@@ -7,7 +7,6 @@ const RestaurantItemCards = ({ data }) => {
     setIsVisible(!isVisible);
   };
 
-  //   console.log(data);
 
   return (
     <div className="res-itemcard">
