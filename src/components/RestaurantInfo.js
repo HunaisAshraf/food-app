@@ -2,18 +2,18 @@ import { cloudinary_url } from "../constants";
 
 const RestaurantInfo = ({ data }) => {
   return (
-    <div className="res-info">
-      <div className="res-img">
-        <img src={cloudinary_url + data?.cloudinaryImageId} alt="" />
+    <div className="flex justify-center gap-16 items-center py-7 bg-slate-800 text-white">
+      <div>
+        <img className="w-72 rounded brightness-90" src={cloudinary_url + data?.cloudinaryImageId} alt="" />
       </div>
       <div className="res-detail">
-        <h1>{data?.name}</h1>
-        <div className="cuisine">
+        <h1 className="font-bold text-2xl">{data?.name}</h1>
+        <div className="flex gap-9">
         {data?.cuisines?.map(c=>(
-            <p key={c}>{c}</p>
+            <p  key={c}>{c}</p>
             ))}
         </div>
-        <div className="delivery">
+        <div className="flex gap-9 mt-11">
         <p>{data?.avgRating} ⭐</p>
         <p>{data?.sla?.maxDeliveryTime} mins</p>
         </div>

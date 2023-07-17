@@ -3,16 +3,19 @@ import { useState, useEffect } from "react";
 import { cloudinary_url } from "../constants";
 import RestaurantInfo from "./RestaurantInfo";
 import RestaurantMenuList from "./RestaurantMenuList";
-import useRestaurant from "../utils/useRestaurant";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+import MenuShimmer from "./ShimmerMenu";
 
 const RestaurantDetails = () => {
   let { resId } = useParams();
 
-  const restaurant = useRestaurant(resId);
+  const restaurant = useRestaurantMenu(resId);
 
-  console.log(restaurant);
+  console.log(restaurant?.length);
 
-  return (
+  return !restaurant ? (
+    <MenuShimmer />
+  ) : (
     <>
       <RestaurantInfo data={restaurant?.resInfo} />
       <RestaurantMenuList data={restaurant?.resMenu} />

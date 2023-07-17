@@ -1,46 +1,26 @@
-import { useState, useEffect } from "react";
-import { FETCH_MENU_URL } from "../constants";
+import { useEffect, useState } from "react";
+import { API_URL } from "../constants";
 
-const useRestaurant = (resId) => {
-  const [restaurant, setRestaurant] = useState();
+const useRestaurant = () => {
+  const [restaurants, setRestaurant] = useState([]);
 
-  async function getRestaurantInfo() {
+  async function getRestaurant() {
     try {
-      let data = await fetch(FETCH_MENU_URL + resId);
-      let json = await data.json();
+      const data = await fetch(API_URL);
+      const json = await data.json();
 
-      const menuList =
-        json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-      const itemCategory =
-        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory";
-      const nestedItemCategory =
-        "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory";
-
-      const menu = menuList?.map((item) => {
-        if (
-          item.card.card["@type"] === itemCategory ||
-          item.card.card["@type"] === nestedItemCategory
-        ) {
-          return item.card.card;
-        }
-      });
-
-      const modifiedData = {
-        resInfo: json?.data?.cards[0]?.card?.card?.info,
-        resMenu: menu?.filter((item) => item !== undefined),
-      };
-
-      setRestaurant(modifiedData);
+      setRestaurant(json?.data?.cards[2]?.data?.data?.cards);
     } catch (error) {
       console.log(error);
     }
   }
+  console.log(restaurants);
 
   useEffect(() => {
-    getRestaurantInfo();
+    getRestaurant();
   }, []);
 
-  return restaurant;
+  return restaurants;
 };
 
 export default useRestaurant;

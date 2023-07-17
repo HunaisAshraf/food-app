@@ -3,7 +3,7 @@ import NestedItemCards from "./NestedItemCards";
 
 const RestaurantMenuList = ({ data }) => {
   return (
-    <>
+    <div className="mx-64">
       {data?.map((item, index) => (
         <div key={index}>
           {item.itemCards ? (
@@ -13,7 +13,7 @@ const RestaurantMenuList = ({ data }) => {
           )}
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

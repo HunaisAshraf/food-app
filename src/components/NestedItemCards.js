@@ -1,5 +1,6 @@
 import { useState } from "react";
 import RestaurantItemCards from "./RestaurantItemCards";
+import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 
 const NestedItemCards = ({ data }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -7,12 +8,20 @@ const NestedItemCards = ({ data }) => {
   const toggle = () => {
     setIsVisible(!isVisible);
   };
-console.log(data);
+  console.log(data);
   return (
-    <div>
-      <div className="title-toggle">
-        <h1 onClick={toggle}>{data.title}</h1>
-        {isVisible ? <p>⬆️</p> : <p>⬇️</p>}
+    <div className="border-2 p-2 my-2 rounded-xl">
+      <div className="flex justify-between" onClick={toggle}>
+        <h1 className="font-bold text-xl">{data.title}</h1>
+        {isVisible ? (
+          <p className="text-2xl">
+            <RiArrowUpSLine />
+          </p>
+        ) : (
+          <p className="text-2xl">
+            <RiArrowDownSLine />
+          </p>
+        )}
       </div>
       {isVisible && (
         <div className="">
