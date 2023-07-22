@@ -9,30 +9,30 @@ import { API_URL } from "../constants";
 const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const [restaurants, setRestaurant] = useState([]);
+  // const [restaurants, setRestaurant] = useState([]);
 
-  async function getRestaurant() {
-    try {
-      const data = await fetch(API_URL);
-      const json = await data.json();
+  // async function getRestaurant() {
+  //   try {
+  //     const data = await fetch(API_URL);
+  //     const json = await data.json();
 
-      setRestaurant(json?.data?.cards[2]?.data?.data?.cards);
-      setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  console.log(restaurants);
-
-  useEffect(() => {
-    getRestaurant();
-  }, []);
-
-  // const restaurants = useRestaurant();
+  //     setRestaurant(json?.data?.cards[2]?.data?.data?.cards);
+  //     setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+  // console.log(restaurants);
 
   // useEffect(() => {
-  //   setFilteredRestaurants(restaurants);
-  // }, [restaurants]);
+  //   getRestaurant();
+  // }, []);
+
+  const restaurants = useRestaurant();
+
+  useEffect(() => {
+    setFilteredRestaurants(restaurants);
+  }, [restaurants]);
 
   return restaurants?.length === 0 ? (
     <Shimmer />

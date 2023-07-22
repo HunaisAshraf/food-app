@@ -10,7 +10,7 @@ const NestedItemCards = ({ data }) => {
   };
   console.log(data);
   return (
-    <div className="border-2 p-2 my-2 rounded-xl">
+    <div className="border-2 p-4 my-2 shadow-lg rounded">
       <div className="flex justify-between" onClick={toggle}>
         <h1 className="font-bold text-xl">{data.title}</h1>
         {isVisible ? (
